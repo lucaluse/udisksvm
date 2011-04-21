@@ -51,9 +51,9 @@ while ps -p $COPROC_PID &>/dev/null; do
 		echo "------------ $event --------------"
 		if [[ "$systeminternal" == "0" ]] && [[ "$usage" == "filesystem" ]] && [[ "$partition" == "1" ]]; then
 		    if [[ "$type" == "vfat" ]]; then
-			options="sync,noatime,nodiratime,noexec,utf8=0"
+			options="flush,noatime,nodiratime,noexec,utf8=0"
 		    else
-			options="sync,noatime,nodiratime,noexec"
+			options="flush,noatime,nodiratime,noexec"
 		    fi
 		    if ! pgrep -f "traydevice $devpath" &>/dev/null; then
 			udisks --mount $devpath --mount-options $options &>/dev/null
